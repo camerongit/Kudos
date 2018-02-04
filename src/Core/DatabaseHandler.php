@@ -1,7 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-class DatabaseHandler extends \CamHobbs\Kudos\Core\CoreComponent
+class DatabaseHandler
 {
     private $config;
     private $db;
@@ -9,10 +9,9 @@ class DatabaseHandler extends \CamHobbs\Kudos\Core\CoreComponent
 
     function __construct(\CamHobbs\Kudos\Core\Core $hook)
     {
-      parent::__construct($hook);
 
-      if(\array_key_exists("db", (array) $this->hook->getConfig()) && \is_array($this->hook->getConfig()['db'])) {
-        $this->config = $this->hook->getConfig()['db'];
+      if(\array_key_exists("db", (array) $hook->getConfig()) && \is_array($hook->getConfig()['db'])) {
+        $this->config = $hook->getConfig()['db'];
       }
       $this->databaseName = (isset($this->config["name"])) ? $this->config["name"] : "kudos";
     }

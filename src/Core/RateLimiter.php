@@ -1,17 +1,15 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-class RateLimiter extends \CamHobbs\Kudos\Core\CoreComponent
+class RateLimiter
 {
     private $lastAction;
     protected $timeAllowed = 0;
 
     function __construct(\CamHobbs\Kudos\Core\Core $hook)
     {
-      parent::__construct($hook);
-
-      if (!empty($this->hook->getConfig()['rate_limiter']['time_allowed'])) {
-          $this->timeAllowed = $this->hook->getConfig()['rate_limiter']['time_allowed'];
+      if (!empty($hook->getConfig()['rate_limiter']['time_allowed'])) {
+          $this->timeAllowed = $hook->getConfig()['rate_limiter']['time_allowed'];
       }
     }
 

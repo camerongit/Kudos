@@ -5,13 +5,12 @@ abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
 {
     private $title;
     private $layout;
-
-    protected $data = array();
+    private $store;
 
     protected static $VIEWS_DIR;
     protected static $LAYOUT_DIR;
 
-    protected function __construct(\CamHobbs\Kudos\Core\Core $hook, $title = null, $layout = null)
+    protected function __construct(\CamHobbs\Kudos\Core\Core $hook, string $title = null, string $layout = null)
     {
         parent::__construct($hook);
 
@@ -21,8 +20,8 @@ abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
         $this->title = $title;
         $this->layout = ($layout === null) ? "layout" : $layout;
 
-        self::$VIEWS_DIR = $this->getPageDir("views_dir");
-        self::$LAYOUT_DIR = $this->getPageDir("layout_dir");
+        self::$VIEWS_DIR = $this->getPageDir("views_dir", $hook->getConfig());
+        self::$LAYOUT_DIR = $this->getPageDir("layout_dir", $hook->getConfig());
     }
 
     function __set($name, $value)
@@ -32,10 +31,20 @@ abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
       }
     }
 
-    private function getPageDir($key)
+    protected function setStore(\CamHobbs\Kudos\Interfaces\DBEntity $entity)
     {
-        if (\array_key_exists($key, (array) $this->hook->config)) {
-            return $this->hook->config[$key];
+      $this->store = $entity;
+    }
+
+    protected function getStore()
+    {
+      return $this->store;
+    }
+
+    private function getPageDir(string $key, array $config)
+    {
+        if (\array_key_exists($key, $config)) {
+            return $config[$key];
         }
         return "";
     }

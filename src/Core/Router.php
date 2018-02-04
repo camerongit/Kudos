@@ -1,11 +1,9 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-class Router extends \CamHobbs\Kudos\Core\CoreComponent
+class Router
 {
-
   function __construct(\CamHobbs\Kudos\Core\Core $hook)
   {
-    parent::__construct($hook);
   }
 }
