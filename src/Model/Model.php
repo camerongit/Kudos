@@ -18,7 +18,7 @@ abstract class Model implements \CamHobbs\Kudos\Interfaces\DBEntity
     $columnName = $this->columnName;
 
     return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($database, $columnName) {
-      if($db === null) {
+      if($db->isAlive()) {
         $reject("Database is not connected. Please try again later.");
       } else {
         $resolve($db->$colName);
