@@ -46,7 +46,7 @@ abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
         if (\array_key_exists($key, $config)) {
             return $config[$key];
         }
-        return \get_include_path() . explode($key, "_")[0] . "/";
+        return \get_include_path() . \explode($key, "_")[0] . "/";
     }
 
     protected static function getDefaultViewsDir()
