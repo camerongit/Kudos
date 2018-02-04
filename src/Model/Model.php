@@ -54,6 +54,6 @@ class Model implements \CamHobbs\Kudos\Interfaces\DBEntity
 
   function getId()
   {
-    return $this->id;
+    return $this->idMap[$this->idName];
   }
 }
