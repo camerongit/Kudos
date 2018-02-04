@@ -1,0 +1,19 @@
+{
+    "name": "camhobbs/kudos",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Cameron Hobbs",
+            "email": "cameron@cameronhobbs.net"
+        }
+    ],
+    "require": {
+        "react/promise": "^2.5",
+        "mongodb/mongodb": "^1.2"
+    },
+    "autoload": {
+      "psr-4": {
+        "CamHobbs\\Kudos\\": "src"
+      }
+    }
+}
