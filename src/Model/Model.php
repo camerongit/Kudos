@@ -1,7 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
-class Model
+abstract class Model implements \CamHobbs\Kudos\Interfaces\DBEntity
 {
   private $collection;
 

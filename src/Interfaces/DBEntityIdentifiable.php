@@ -1,7 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Interfaces;
 
-interface DBEntityIdentifiable extends \CamHobbs\Kudos\Interfaces\DBEntity
+interface DBEntityIdentifiable
 {
   function setId($id);
 
