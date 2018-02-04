@@ -10,6 +10,6 @@ class IndexPage extends \CamHobbs\Kudos\Page\Page
 
   function view()
   {
-    parent::display();
+    $this->display();
   }
 }

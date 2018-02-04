@@ -18,7 +18,13 @@ class LoginPage extends Page
       $this->getStore()->setId($email);
       $this->getStore()->load();
 
-      // Compare post password encrypted and targetaccount encrypted pass
+      // Compare post password encrypted and targetaccount encrypted pass and if correct..:
+      return true;
     }
+    return false;
+  }
+
+  function view() {
+    $this->display();
   }
 }
