@@ -3,17 +3,26 @@ namespace CamHobbs\Kudos\Model;
 
 abstract class Model implements \CamHobbs\Kudos\Interfaces\DBEntity
 {
-  private $collection;
+  private $db;
+  private $colName;
 
-  protected function __construct(\CamHobbs\Kudos\Core\DatabaseHandler $db, $colName, $idName)
+  protected function __construct(\CamHobbs\Kudos\Core\DatabaseHandler $db, string $colName)
   {
-    $this->collection = $db->$colName;
-    $this->idName = $id;
-    \array_push($this->idMap, array($this->idName => ""));
+    $this->db = $db;
+    $this->colName = $colName;
   }
 
   protected function getCollection()
   {
-    return $this->collection;
+    $database = $this->db;
+    $columnName = $this->columnName;
+
+    return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($database, $columnName) {
+      if($db === null) {
+        $reject("Database is not connected. Please try again later.");
+      } else {
+        $resolve($db->$colName);
+      }
+    }));
   }
 }

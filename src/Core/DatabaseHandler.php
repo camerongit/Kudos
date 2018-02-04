@@ -9,7 +9,6 @@ class DatabaseHandler
 
     function __construct(\CamHobbs\Kudos\Core\Core $hook)
     {
-
       if(\array_key_exists("db", (array) $hook->getConfig()) && \is_array($hook->getConfig()['db'])) {
         $this->config = $hook->getConfig()['db'];
       }
@@ -21,7 +20,6 @@ class DatabaseHandler
       if($this->db === null) {
         return false;
       }
-      // return db connected here..
       return true;
     }
 

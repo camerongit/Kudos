@@ -14,9 +14,9 @@ class LoginPage extends Page
   {
     if(isset($_POST["email"]) && isset($_POST["password"])) {
       $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-      $this->getStore()->setId($email);
 
-      $targetAccount = $this->getStore()->load();
+      $this->getStore()->setId($email);
+      $this->getStore()->load();
 
       // Compare post password encrypted and targetaccount encrypted pass
     }
