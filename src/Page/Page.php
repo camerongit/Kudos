@@ -1,7 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
-abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
+abstract class Page
 {
     private $title;
     private $layout;
@@ -12,8 +12,6 @@ abstract class Page extends \CamHobbs\Kudos\Core\CoreComponent
 
     protected function __construct(\CamHobbs\Kudos\Core\Core $hook, string $title = null, string $layout = null)
     {
-        parent::__construct($hook);
-
         if($title === null) {
           $title = \substr(\get_class($this), -4);
         }

@@ -9,3 +9,5 @@ $core = \CamHobbs\Kudos\Core\Core::withConfig([
     'time_allowed' => 1000
   ]
 ]);
+
+$core->getRouter()->listen();
