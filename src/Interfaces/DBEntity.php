@@ -5,9 +5,9 @@ interface DBEntity
 {
   function save();
 
+  function saveAsync();
+
   function load();
 
-  function setId($id);
-
-  function getId();
+  function loadAsync();
 }
