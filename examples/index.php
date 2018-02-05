@@ -5,10 +5,6 @@
 
 require_once '../src/autoload.php';
 
-$core = \CamHobbs\Kudos\Core\Core::withConfig([
-  'rate_limiter' => [
-    'time_allowed' => 1000
-  ]
-]);
+$core = new \CamHobbs\Kudos\Core\Core;
 
 $core->getRouter()->listen();
