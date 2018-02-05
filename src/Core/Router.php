@@ -13,9 +13,9 @@ class Router
     $this->hook = $hook;
   }
 
-  function registerCustomRoute($route, $page)
+  function registerCustomPage($page)
   {
-    $this->customRoutes[$route] = $page;
+    \array_push($this->customRoutes, $page);
   }
 
   function listen()
@@ -26,7 +26,6 @@ class Router
       $redirect = \str_replace(\strchr($redirect, "Page"), "", $redirect);
       $properRedirect = \ucfirst(\strtolower($redirect)) . "Page";
 
-      // Need to match even <something>* paths here..
       if(\array_key_exists($redirect, $this->customRoutes)) {
         if(\array_key_exists("custom_page_directory", $hook->getConfig())) {
           $customPageDir = \str_replace("/", "", $hook->getConfig()["custom_page_directory"]);
