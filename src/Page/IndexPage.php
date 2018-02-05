@@ -6,7 +6,7 @@ use CamHobbs\Kudos\Page\Page;
 
 class IndexPage extends Page
 {
-  function __construct(\CamHobbs\Kudos\Core\Core $core)
+  function __construct(Core $core)
   {
     parent::__construct($core, "Home");
   }
