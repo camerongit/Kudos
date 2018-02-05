@@ -1,18 +1,31 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
+use CamHobbs\Kudos\Core\RateLimiter;
+use CamHobbs\Kudos\Core\DatabaseHandler;
+use CamHobbs\Kudos\Core\Router;
+
 class Core
 {
     private $rateLimiter;
     protected $config;
     private $db;
     private $router;
+    protected $logger;
 
     function __construct()
     {
-        $this->rateLimiter = new \CamHobbs\Kudos\Core\RateLimiter($this);
-        $this->db = new \CamHobbs\Kudos\Core\DatabaseHandler($this);
-        $this->router = new \CamHobbs\Kudos\Core\Router($this);
+        $this->rateLimiter = new RateLimiter($this);
+        $this->db = new DatabaseHandler($this);
+        $this->router = new Router($this);
+
+        if($this->config !== null && \array_key_exists("logger_path", $this->config)) {
+          $this->logger = new \Monolog\Logger('dev');
+          $this->logger->pushHandler(new \Monolog\Handler\StreamHandler($this->config["logger_path"], \MonoLog\Logger::INFO));
+        } else {
+          $this->logger = new \Monolog\Logger('dev');
+          $this->logger->pushHandler(new \Monolog\Handler\StreamHandler("dev.log", \MonoLog\Logger::INFO));
+        }
     }
 
     static function withConfig(array $options)
@@ -26,9 +39,16 @@ class Core
     {
         if($this->db !== null) {
           $this->db->disconnect()->done(function($result) {
-            echo $result;
+            $this->logger->info($result);
           });
         }
+    }
+
+    function __get($name) {
+      if($name === "logger") {
+        return $this->$name;
+      }
+      throw new Exception("Could not find property " . \get_class($this) . "::$name");
     }
 
     function __set($key, $value)
@@ -48,7 +68,7 @@ class Core
       return $this->config;
     }
 
-    protected function setRateLimiter(\CamHobbs\Kudos\Core\RateLimiter $rateLimiter)
+    protected function setRateLimiter(RateLimiter $rateLimiter)
     {
       $this->rateLimiter = $rateLimiter;
     }
@@ -58,7 +78,7 @@ class Core
       return $this->rateLimiter;
     }
 
-    protected function setDB(\CamHobbs\Kudos\Core\DatabaseHandler $db)
+    protected function setDB(DatabaseHandler $db)
     {
       $this->db = $db;
     }
@@ -68,9 +88,9 @@ class Core
       if($this->db !== null) {
         if(!$this->db->isAlive()) {
           $this->db->connect()->done(function() {
-            echo "Successfully connected to the database.";
-          }, function() use ($connection) {
-            echo "Failed to connect to the database.";
+            $this->logger->info("Successfully connected to the database.");
+          }, function() {
+            $this->logger->error("Failed to connect to the database.");
             // Try and reconnect after a timeout
           });
         }
@@ -78,7 +98,7 @@ class Core
       return $this->db;
     }
 
-    protected function setRouter(\CamHobbs\Kudos\Core\Router $router)
+    protected function setRouter(Router $router)
     {
       $this->router = $router;
     }

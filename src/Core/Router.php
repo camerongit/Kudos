@@ -21,16 +21,19 @@ class Router
     if(isset($_GET["redirect"])) {
       $redirect = $_GET["redirect"];
 
-      $redirect = \str_replace(\strchr($redirect), "", $redirect);
+      $redirect = \str_replace(\strchr($redirect, "Page"), "", $redirect);
       $properRedirect = \ucfirst(\strtolower($redirect)) . "Page";
 
       // Need to match even <something>* paths here..
       if(\array_key_exists($redirect, $this->customRoutes)) {
         if(\array_key_exists("custom_page_directory", $hook->getConfig())) {
-          $customPageDir = $hook->getConfig()["custom_page_directory"];
+          $customPageDir = \str_replace("/", "", $hook->getConfig()["custom_page_directory"]);
 
           if($customPageDir !== null) {
-            // Check contains include path first, if not.. :
+            if(!empty(\strchr($customPageDir, \get_include_path()))) {
+              $customPageDir = \strchr($customPageDir, \get_include_path());
+            }
+
             $page = \get_include_path() . "/" . $customPageDir . "/" . $properRedirect;
 
             $this->loadPage($page);
@@ -43,9 +46,9 @@ class Router
     }
   }
 
-  private function loadPage(string $page)
+  private function loadPage($page)
   {
-    if(\get_class($page) !== null) {
+    if(\class_exists($page)) {
       $loadedPage = new $page($this->hook);
       $loadedPage->view();
     }

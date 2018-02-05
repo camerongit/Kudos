@@ -1,8 +1,11 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
-class AuthModel extends \CamHobbs\Kudos\Model\Model
-implements \CamHobbs\Kudos\Interfaces\DBEntityIdentifiable
+use CamHobbs\Kudos\Core\DatabaseHandler;
+use CamHobbs\Kudos\Model\Model;
+use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
+
+class AuthModel extends Model implements DBEntityIdentifiable
 {
   private $idName = "email";
   private $idMap = array();
@@ -10,7 +13,7 @@ implements \CamHobbs\Kudos\Interfaces\DBEntityIdentifiable
   private $data = array();
   private $email;
 
-  function __construct(\CamHobbs\Kudos\Core\DatabaseHandler $db) {
+  function __construct(DatabaseHandler $db) {
     parent::__construct($db, "Users");
   }
 
@@ -22,21 +25,21 @@ implements \CamHobbs\Kudos\Interfaces\DBEntityIdentifiable
 
   function saveAsync(callable $successCallback, callable $failCallback)
   {
-    new \React\Promise\Promise(function(callable $resolve, callable $reject) {
+    (new \React\Promise\Promise(function(callable $resolve, callable $reject) {
       try {
         $this->save();
         $resolve();
       } catch(\Exception $exception) {
         $reject($exception);
       }
-    })->done($successCallback, $failCallback);
+    }))->done($successCallback, $failCallback);
   }
 
   function save()
   {
     $data = [
       $this->idName => $this->getId(),
-      "password" => $this->password;
+      "password" => $this->password
     ];
 
     $this->getCollection()->then(function($db) {
@@ -62,7 +65,7 @@ implements \CamHobbs\Kudos\Interfaces\DBEntityIdentifiable
     $found = null;
 
     $this->getCollection()->done(function($db) {
-      $found = $db->findOne($this->idName => $this->getId());
+      $found = $db->findOne(array($this->idName => $this->getId()));
     }, function($errorMsg) {
       echo $errorMsg;
     });

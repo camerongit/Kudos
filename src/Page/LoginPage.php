@@ -1,13 +1,15 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
+use CamHobbs\Kudos\Core\Core;
+use CamHobbs\Kudos\Model\AuthModel;
+
 class LoginPage extends Page
 {
-
-  function __construct(\CamHobbs\Kudos\Core\Core $hook)
+  function __construct(Core $hook)
   {
       parent::__construct($hook, "Login");
-      $this->setStore(new \CamHobbs\Kudos\Model\AuthModel($hook->getDB()));
+      $this->setStore(new AuthModel($hook->getDB()));
   }
 
   function actionLogin()

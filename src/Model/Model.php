@@ -1,12 +1,15 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
-abstract class Model implements \CamHobbs\Kudos\Interfaces\DBEntity
+use CamHobbs\Kudos\Core\DatabaseHandler;
+use CamHobbs\Kudos\Interfaces\DBEntity;
+
+abstract class Model implements DBEntity
 {
   private $db;
   private $colName;
 
-  protected function __construct(\CamHobbs\Kudos\Core\DatabaseHandler $db, string $colName)
+  protected function __construct(DatabaseHandler $db, $colName)
   {
     $this->db = $db;
     $this->colName = $colName;

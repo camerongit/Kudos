@@ -1,14 +1,18 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
+use CamHobbs\Kudos\Core\Core;
+
 class DatabaseHandler
 {
+    private $hook;
     private $config;
     private $db;
     private $databaseName;
 
-    function __construct(\CamHobbs\Kudos\Core\Core $hook)
+    function __construct(Core $hook)
     {
+      $this->hook = $hook;
       if(\array_key_exists("db", (array) $hook->getConfig()) && \is_array($hook->getConfig()['db'])) {
         $this->config = $hook->getConfig()['db'];
       }
@@ -43,9 +47,10 @@ class DatabaseHandler
     {
       $host = $this->config['host'];
       $port = $this->config['port'];
+      $logger = $this->hook->logger;
 
-      return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($host, $port) {
-        echo "Attempting connection to database..";
+      return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($host, $port, $logger) {
+        $logger->info("Attempting connection to database..");
 
         try {
           if(isset($host) && isset($port)) {
@@ -67,7 +72,8 @@ class DatabaseHandler
           if(!$this->isAlive()) {
             $resolve("Database connection has already been disconnected.");
           }
-          $this->db->disconnect();
+          // no method for this??
+          //$this->db->close();
           $resolve("Database has been disconnected");
         }
       }));

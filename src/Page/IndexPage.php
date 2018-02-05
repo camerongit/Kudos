@@ -1,7 +1,10 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
-class IndexPage extends \CamHobbs\Kudos\Page\Page
+use CamHobbs\Kudos\Core\Core
+use CamHobbs\Kudos\Page\Page;
+
+class IndexPage extends Page
 {
   function __construct(\CamHobbs\Kudos\Core\Core $core)
   {

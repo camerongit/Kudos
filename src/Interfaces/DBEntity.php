@@ -5,7 +5,7 @@ interface DBEntity
 {
   function save();
 
-  function saveAsync();
+  function saveAsync(callable $successCallback, callable $failCallback);
 
   function load();
 

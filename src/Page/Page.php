@@ -1,6 +1,9 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
+use CamHobbs\Kudos\Core\Core;
+use CamHobbs\Kudos\Interfaces\DBEntity;
+
 abstract class Page
 {
     private $title;
@@ -10,7 +13,7 @@ abstract class Page
     protected static $VIEWS_DIR;
     protected static $LAYOUT_DIR;
 
-    protected function __construct(\CamHobbs\Kudos\Core\Core $hook, string $title = null, string $layout = null)
+    protected function __construct(Core $hook, $title = null, $layout = null)
     {
         if($title === null) {
           $title = \substr(\get_class($this), -4);
@@ -29,7 +32,7 @@ abstract class Page
       }
     }
 
-    protected function setStore(\CamHobbs\Kudos\Interfaces\DBEntity $entity)
+    protected function setStore(DBEntity $entity)
     {
       $this->store = $entity;
     }
@@ -39,12 +42,12 @@ abstract class Page
       return $this->store;
     }
 
-    private function getPageDir(string $key, array $config)
+    private function getPageDir($key, array $config)
     {
         if (\array_key_exists($key, $config)) {
             return $config[$key];
         }
-        return \get_include_path() . \explode($key, "_")[0] . "/";
+        return \get_include_path() . "/" . \explode("_", $key)[0] . "/";
     }
 
     protected static function getDefaultViewsDir()
