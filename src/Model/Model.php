@@ -24,7 +24,7 @@ abstract class Model implements DBEntity
       if($db->isAlive()) {
         $reject("Database is not connected. Please try again later.");
       } else {
-        $resolve($db->$colName);
+        $resolve($database->$columnName);
       }
     }));
   }
