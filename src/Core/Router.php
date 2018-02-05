@@ -1,17 +1,19 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
+use CamHobbs\Kudos\Core\Core;
+
 class Router
 {
   private $customRoutes = array();
   private $hook;
 
-  function __construct(\CamHobbs\Kudos\Core\Core $hook)
+  function __construct(Core $hook)
   {
     $this->hook = $hook;
   }
 
-  function registerCustomRoute(string $route, string $page)
+  function registerCustomRoute($route, $page)
   {
     $this->customRoutes[$route] = $page;
   }
