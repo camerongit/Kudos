@@ -15,16 +15,6 @@ class RateLimiter
       }
     }
 
-    function __get($name)
-    {
-        switch ($name) {
-        case "latency":
-          if ($this->lastAction !== null) {
-              return $this->lastAction - time();
-          }
-      }
-    }
-
     protected function setLastAction(time $lastAction)
     {
       $this->lastAction = $lastAction;

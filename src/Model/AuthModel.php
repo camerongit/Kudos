@@ -18,9 +18,10 @@ class AuthModel extends Model implements DBEntityIdentifiable
   }
 
   function __get($name) {
-    if(!\property_exists($name)) {
+    if(isset($this->data[$name])) {
       return $this->data[$name];
     }
+    return null;
   }
 
   function saveAsync(callable $successCallback, callable $failCallback)

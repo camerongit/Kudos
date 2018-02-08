@@ -25,13 +25,6 @@ abstract class Page
         self::$LAYOUT_DIR = $this->getPageDir("layout_dir", $hook->getConfig());
     }
 
-    function __set($name, $value)
-    {
-      if($name === "title" || $name === "layout") {
-        throw new Exception("Title/layout must be set in the constructor.");
-      }
-    }
-
     protected function setStore(DBEntity $entity)
     {
       $this->store = $entity;
