@@ -8,7 +8,7 @@ use CamHobbs\Kudos\Core\Router;
 class Core
 {
     private $rateLimiter;
-    protected $config;
+    protected $config = array();
     private $db;
     private $router;
     protected $logger;

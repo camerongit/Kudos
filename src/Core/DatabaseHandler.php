@@ -47,7 +47,7 @@ class DatabaseHandler
     {
       $host = $this->config['host'];
       $port = $this->config['port'];
-      $logger = $this->hook->logger;
+      $logger = $this->hook->getLogger();
 
       return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($host, $port, $logger) {
         $logger->info("Attempting connection to database..");
