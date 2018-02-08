@@ -44,22 +44,16 @@ class Core
         }
     }
 
-    function __get($name) {
-      if($name === "logger") {
-        return $this->$name;
-      }
-      throw new Exception("Could not find property " . \get_class($this) . "::$name");
+    function getLogger()
+    {
+      return $this->logger;
     }
 
-    function __set($key, $value)
+    function setConfig($conf)
     {
-        switch ($key) {
-        case "config":
-          if (\is_array($value)) {
-              $defaultConfig = [];
-              $this->config = \array_merge($defaultConfig, $value);
-          }
-          break;
+      if (\is_array($conf)) {
+          $defaultConfig = [];
+          $this->config = \array_merge($defaultConfig, $conf);
       }
     }
 
