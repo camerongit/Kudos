@@ -1,8 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
-use CamHobbs\Kudos\Core\Core
-use CamHobbs\Kudos\Page\Page;
+use CamHobbs\Kudos\Core\Core;
 
 class IndexPage extends Page
 {

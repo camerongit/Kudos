@@ -1,8 +1,6 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-use CamHobbs\Kudos\Core\Core;
-
 class Router
 {
   private $customRoutes = array();

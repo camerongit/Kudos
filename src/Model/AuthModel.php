@@ -2,7 +2,6 @@
 namespace CamHobbs\Kudos\Model;
 
 use CamHobbs\Kudos\Core\DatabaseHandler;
-use CamHobbs\Kudos\Model\Model;
 use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
 
 class AuthModel extends Model implements DBEntityIdentifiable

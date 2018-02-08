@@ -1,8 +1,6 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-use CamHobbs\Kudos\Core\Core;
-
 class DatabaseHandler
 {
     private $hook;

@@ -1,10 +1,6 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
-use CamHobbs\Kudos\Core\RateLimiter;
-use CamHobbs\Kudos\Core\DatabaseHandler;
-use CamHobbs\Kudos\Core\Router;
-
 class Core
 {
     private $rateLimiter;
