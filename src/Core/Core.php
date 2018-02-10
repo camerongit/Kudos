@@ -1,17 +1,21 @@
 <?php
 namespace CamHobbs\Kudos\Core;
 
+use CamHobbs\Kudos\Interfaces\Database;
+
 class Core
 {
     use Logger;
 
     protected $config = array();
     private $db;
+    private $cache;
     private $router;
 
     function __construct()
     {
-        $this->db = new DatabaseHandler($this);
+        $this->db = new Store($this);
+        $this->cache = new Cache($this);
         $this->router = new Router($this);
     }
 
@@ -24,11 +28,19 @@ class Core
 
     function __destruct()
     {
-        if($this->db !== null) {
-          $this->db->disconnect()->done(function($result) {
-            $this->log($result);
-          });
-        }
+      $this->destroy($this->db, "mongo");
+      $this->destroy($this->cache, "redis");
+    }
+
+    function destroy(Database $handle, $dbPrefix)
+    {
+      if($handle !== null) {
+        $handle->disconnect()->done(function() use ($dbPrefix) {
+          $this->log("Disconnected from $dbPrefix db.");
+        }, function() use ($dbPrefix) {
+          $this->log("Failed to disconnect from $dbPrefix db - (might not be connected?).");
+        });
+      }
     }
 
     function setConfig($conf)
@@ -44,7 +56,7 @@ class Core
       return $this->config;
     }
 
-    protected function setDB(DatabaseHandler $db)
+    protected function setDB(Store $db)
     {
       $this->db = $db;
     }
@@ -53,15 +65,20 @@ class Core
     {
       if($this->db !== null) {
         if(!$this->db->isAlive()) {
-          $this->db->connect()->done(function() {
-            $this->log("Successfully connected to the database.");
-          }, function() {
-            $this->log("Failed to connect to the database.");
-            // Try and reconnect after a timeout
-          });
+          $this->db->connect();
         }
       }
       return $this->db;
+    }
+
+    function getCache()
+    {
+      if($this->cache !== null) {
+        if(!$this->cache->isAlive()) {
+          $this->cache->connect();
+        }
+      }
+      return $this->cache;
     }
 
     protected function setRouter(Router $router)

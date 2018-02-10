@@ -25,8 +25,8 @@ class Router
       $properRedirect = \ucfirst(\strtolower($redirect)) . "Page";
 
       if(\array_key_exists($redirect, $this->customRoutes)) {
-        if(\array_key_exists("custom_page_directory", $hook->getConfig())) {
-          $customPageDir = \str_replace("/", "", $hook->getConfig()["custom_page_directory"]);
+        if(\array_key_exists("custom_page_directory", $this->hook->getConfig())) {
+          $customPageDir = \str_replace("/", "", $this->hook->getConfig()["custom_page_directory"]);
 
           if($customPageDir !== null) {
             if(!empty(\strchr($customPageDir, \get_include_path()))) {

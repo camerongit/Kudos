@@ -2,7 +2,7 @@
 namespace CamHobbs\Kudos\Model;
 
 use CamHobbs\Kudos\Core\Logger;
-use CamHobbs\Kudos\Core\DatabaseHandler;
+use CamHobbs\Kudos\Core\Store;
 use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
 
 class AuthModel extends Model implements DBEntityIdentifiable
@@ -15,7 +15,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
   private $data = array();
   private $email;
 
-  function __construct(DatabaseHandler $db) {
+  function __construct(Store $db) {
     parent::__construct($db, "Users");
   }
 

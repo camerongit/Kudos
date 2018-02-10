@@ -1,27 +1,27 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
-use CamHobbs\Kudos\Core\DatabaseHandler;
+use CamHobbs\Kudos\Core\Store;
 use CamHobbs\Kudos\Interfaces\DBEntity;
 
 abstract class Model implements DBEntity
 {
-  private $db;
+  private $mongo;
   private $colName;
 
-  protected function __construct(DatabaseHandler $db, $colName)
+  protected function __construct(Store $mongo, $colName)
   {
-    $this->db = $db;
+    $this->mongo = $mongo;
     $this->colName = $colName;
   }
 
   protected function getCollection()
   {
-    $database = $this->db;
+    $database = $this->mongo;
     $columnName = $this->columnName;
 
     return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($database, $columnName) {
-      if($db->isAlive()) {
+      if($database->isAlive()) {
         $reject("Database is not connected. Please try again later.");
       } else {
         $resolve($database->$columnName);

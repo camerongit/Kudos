@@ -3,7 +3,6 @@ namespace CamHobbs\Kudos\Core;
 
 trait Logger
 {
-
   function log($text)
   {
     $file = \fopen("dev.log", "a");

@@ -9,7 +9,8 @@
     ],
     "require": {
         "react/promise": "^2.5",
-        "mongodb/mongodb": "^1.2"
+        "mongodb/mongodb": "^1.2",
+        "predis/predis": "^1.1"
     },
     "autoload": {
       "psr-4": {
