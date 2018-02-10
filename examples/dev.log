@@ -2,3 +2,7 @@ Sat, 10 Feb 2018 23:03:43 - Attempting connection to mongo db..
 Sat, 10 Feb 2018 23:03:43 - Successfully connected to mongo db.
 Sat, 10 Feb 2018 23:03:43 - Disconnected from mongo db.
 Sat, 10 Feb 2018 23:03:43 - Failed to disconnect from redis db - (might not be connected?).
+Sat, 10 Feb 2018 23:27:04 - Attempting connection to mongo db..
+Sat, 10 Feb 2018 23:27:04 - Successfully connected to mongo db.
+Sat, 10 Feb 2018 23:27:04 - Disconnected from mongo db.
+Sat, 10 Feb 2018 23:27:04 - Failed to disconnect from redis db - (might not be connected?).

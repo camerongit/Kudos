@@ -3,7 +3,7 @@ namespace CamHobbs\Kudos\Core;
 
 use CamHobbs\Kudos\Interfaces\Database;
 
-class DatabaseHandler extends Database
+class Store extends Database
 {
     use Logger;
 
