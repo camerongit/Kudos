@@ -2,14 +2,24 @@
 namespace CamHobbs\Kudos\Page;
 
 use CamHobbs\Kudos\Core\Core;
+use CamHobbs\Kudos\Interfaces\RateLimited;
 use CamHobbs\Kudos\Model\AuthModel;
 
-class LoginPage extends Page
+class LoginPage extends Page implements RateLimited
 {
+  private $rateLimiter;
+
   function __construct(Core $hook)
   {
       parent::__construct($hook, "Login");
+
       $this->setStore(new AuthModel($hook->getDB()));
+      $this->rateLimiter = new RateLimiter();
+  }
+
+  function getRateLimiter()
+  {
+    return $this->rateLimiter;
   }
 
   function actionLogin()

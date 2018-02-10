@@ -1,6 +1,7 @@
 <?php
-namespace CamHobbs\Kudos\Core;
+namespace CamHobbs\Kudos\Page;
 
+// Ignore for the time being, this needs to use redis as a cache.
 class RateLimiter
 {
     private $lastAction;

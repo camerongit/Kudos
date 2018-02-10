@@ -1,12 +1,9 @@
-[2018-02-05 11:46:39] dev.INFO: Attempting connection to database.. [] []
-[2018-02-05 11:46:39] dev.INFO: Successfully connected to the database. [] []
-[2018-02-05 11:46:39] dev.INFO: Database has been disconnected [] []
-[2018-02-05 11:55:40] dev.INFO: Attempting connection to database.. [] []
-[2018-02-05 11:55:40] dev.INFO: Successfully connected to the database. [] []
-[2018-02-05 11:55:40] dev.INFO: Database has been disconnected [] []
-[2018-02-05 12:04:09] dev.INFO: Attempting connection to database.. [] []
-[2018-02-05 12:04:09] dev.INFO: Successfully connected to the database. [] []
-[2018-02-05 12:04:09] dev.INFO: Database has been disconnected [] []
-[2018-02-08 23:49:18] dev.INFO: Attempting connection to database.. [] []
-[2018-02-08 23:49:18] dev.INFO: Successfully connected to the database. [] []
-[2018-02-08 23:49:18] dev.INFO: Database has been disconnected [] []
+Sat, 10 Feb 2018 00:15:32 - Attempting connection to database..
+Sat, 10 Feb 2018 00:15:32 - Successfully connected to the database.
+Sat, 10 Feb 2018 00:15:32 - Database has been disconnected
+Sat, 10 Feb 2018 00:15:38 - Attempting connection to database..
+Sat, 10 Feb 2018 00:15:38 - Successfully connected to the database.
+Sat, 10 Feb 2018 00:15:38 - Database has been disconnected
+Sat, 10 Feb 2018 00:16:14 - Attempting connection to database..
+Sat, 10 Feb 2018 00:16:14 - Successfully connected to the database.
+Sat, 10 Feb 2018 00:16:14 - Database has been disconnected

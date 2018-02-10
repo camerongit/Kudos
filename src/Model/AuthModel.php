@@ -1,11 +1,14 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
+use CamHobbs\Kudos\Core\Logger;
 use CamHobbs\Kudos\Core\DatabaseHandler;
 use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
 
 class AuthModel extends Model implements DBEntityIdentifiable
 {
+  use Logger;
+
   private $idName = "email";
   private $idMap = array();
 
@@ -44,8 +47,9 @@ class AuthModel extends Model implements DBEntityIdentifiable
 
     $this->getCollection()->then(function($db) {
       $db->save($data);
+      $this->log("Saved data for " + $data[$this->getId()]);
     }, function($errorMsg) {
-      echo $errorMsg;
+      $this->log($errorMsg);
     });
   }
 
@@ -66,8 +70,9 @@ class AuthModel extends Model implements DBEntityIdentifiable
 
     $this->getCollection()->done(function($db) {
       $found = $db->findOne(array($this->idName => $this->getId()));
+      $this->log("Loaded data for " + $found[$this->idName]);
     }, function($errorMsg) {
-      echo $errorMsg;
+      $this->log($errorMsg);
     });
     $this->data = $found;
   }

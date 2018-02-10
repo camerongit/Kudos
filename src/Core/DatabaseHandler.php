@@ -3,6 +3,8 @@ namespace CamHobbs\Kudos\Core;
 
 class DatabaseHandler
 {
+    use Logger;
+
     private $hook;
     private $config;
     private $db;
@@ -45,10 +47,9 @@ class DatabaseHandler
     {
       $host = $this->config['host'];
       $port = $this->config['port'];
-      $logger = $this->hook->getLogger();
 
-      return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($host, $port, $logger) {
-        $logger->info("Attempting connection to database..");
+      return (new \React\Promise\Promise(function(callable $resolve, callable $reject) use ($host, $port) {
+        $this->log("Attempting connection to database..");
 
         try {
           if(isset($host) && isset($port)) {
