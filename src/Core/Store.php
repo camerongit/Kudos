@@ -42,7 +42,7 @@ class Store extends Database
           }
           $this->log("Successfully connected to mongo db.");
         } catch(\Exception $e) {
-          $this->log("Issue connecting to mongo.. retrying");
+          $this->log("Issue connecting to mongo");
         }
       });
     }
