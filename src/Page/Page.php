@@ -13,16 +13,23 @@ abstract class Page
     protected static $VIEWS_DIR;
     protected static $LAYOUT_DIR;
 
-    protected function __construct(Core $hook, $title = null, $layout = null)
+    protected function __construct(array $coreConfig, $title = null, $layout = null)
     {
-        if($title === null) {
-          $title = \substr(\get_class($this), -4);
-        }
-        $this->title = $title;
-        $this->layout = ($layout === null) ? "layout" : $layout;
+      $this->coreConfig = $coreConfig;
 
-        self::$VIEWS_DIR = $this->getPageDir("views_dir", $hook->getConfig());
-        self::$LAYOUT_DIR = $this->getPageDir("layout_dir", $hook->getConfig());
+      if($title === null) {
+        $title = \substr(\get_class($this), -4);
+      }
+      $this->title = $title;
+      $this->layout = ($layout === null) ? "layout" : $layout;
+
+      self::$VIEWS_DIR = $this->getPageDir("views_dir");
+      self::$LAYOUT_DIR = $this->getPageDir("layout_dir");
+    }
+
+    function getCoreConfig()
+    {
+      return $this->coreConfig;
     }
 
     protected function setStore(DBEntity $entity)
@@ -35,10 +42,10 @@ abstract class Page
       return $this->store;
     }
 
-    private function getPageDir($key, array $config)
+    private function getPageDir($key)
     {
-        if (\array_key_exists($key, $config)) {
-            return $config[$key];
+        if (\array_key_exists($key, $this->coreConfig)) {
+            return $this->coreConfig[$key];
         }
         return \get_include_path() . "/" . \explode("_", $key)[0] . "/";
     }

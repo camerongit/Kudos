@@ -8,13 +8,13 @@ class Core
     use Logger;
 
     protected $config = array();
-    private $db;
+    private $mongo;
     private $cache;
     private $router;
 
     function __construct()
     {
-        $this->db = new Store($this);
+        $this->mongo = new Store($this);
         $this->cache = new Cache($this);
         $this->router = new Router($this);
     }
@@ -28,7 +28,7 @@ class Core
 
     function __destruct()
     {
-      $this->destroy($this->db, "mongo");
+      $this->destroy($this->mongo, "mongo");
       $this->destroy($this->cache, "redis");
     }
 
@@ -56,19 +56,19 @@ class Core
       return $this->config;
     }
 
-    protected function setDB(Store $db)
+    protected function setDB(Store $mongo)
     {
-      $this->db = $db;
+      $this->mongo = $mongo;
     }
 
     function getDB()
     {
-      if($this->db !== null) {
-        if(!$this->db->isAlive()) {
-          $this->db->connect();
+      if($this->mongo !== null) {
+        if(!$this->mongo->isAlive()) {
+          $this->mongo->connect();
         }
       }
-      return $this->db;
+      return $this->mongo;
     }
 
     function getCache()

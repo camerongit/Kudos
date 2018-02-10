@@ -9,11 +9,11 @@ class LoginPage extends Page implements RateLimited
 {
   private $rateLimiter;
 
-  function __construct(Core $hook)
+  function __construct(Core $core)
   {
-      parent::__construct($hook, "Login");
+      parent::__construct($core->getConfig(), "Login");
 
-      $this->setStore(new AuthModel($hook->getDB()));
+      $this->setStore(new AuthModel($core->getDB()));
       $this->rateLimiter = new RateLimiter();
   }
 
