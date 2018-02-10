@@ -4,15 +4,13 @@ namespace CamHobbs\Kudos\Core;
 class DatabaseHandler
 {
     use Logger;
-
-    private $hook;
+    
     private $config;
     private $db;
     private $databaseName;
 
     function __construct(Core $hook)
     {
-      $this->hook = $hook;
       if(\array_key_exists("db", (array) $hook->getConfig()) && \is_array($hook->getConfig()['db'])) {
         $this->config = $hook->getConfig()['db'];
       }
