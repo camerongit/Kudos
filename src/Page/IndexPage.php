@@ -12,7 +12,7 @@ class IndexPage extends Page
     parent::__construct($core->getConfig(), IndexPage::PAGE_REDIRECT_VALUE);
   }
 
-  function view()
+  function view(): void
   {
     $this->display();
   }

@@ -11,12 +11,12 @@ class Router
     $this->core = $core;
   }
 
-  function registerCustomPage(string $pageClassLoc)
+  function registerCustomPage(string $pageClassLoc): void
   {
     \array_push($this->customRoutes, $pageClassLoc);
   }
 
-  function listen()
+  function listen(): void
   {
     if(isset($_GET["redirect"])) {
       $redirect = $_GET["redirect"];
@@ -45,7 +45,7 @@ class Router
     }
   }
 
-  private function loadPage($page)
+  private function loadPage($page): void
   {
     if(\class_exists($page)) {
       $loadedPage = new $page($this->core);

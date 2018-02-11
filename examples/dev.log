@@ -23,3 +23,18 @@ Sun, 11 Feb 2018 17:37:14 - Attempting to connect to redis db.. (cache)
 Sun, 11 Feb 2018 17:37:14 - Successfully connected to redis db.. (cache)
 Sun, 11 Feb 2018 17:37:14 - Failed to disconnect from mongo db - (might not be connected?).
 Sun, 11 Feb 2018 17:37:14 - Disconnected from redis db.
+Sun, 11 Feb 2018 17:46:54 - Attempting connection to mongo db..
+Sun, 11 Feb 2018 17:46:56 - Attempting to connect to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Successfully connected to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Failed to disconnect from mongo db - (might not be connected?).
+Sun, 11 Feb 2018 17:46:58 - Disconnected from redis db.
+Sun, 11 Feb 2018 17:46:58 - Attempting connection to mongo db..
+Sun, 11 Feb 2018 17:46:58 - Attempting to connect to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Successfully connected to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Failed to disconnect from mongo db - (might not be connected?).
+Sun, 11 Feb 2018 17:46:58 - Disconnected from redis db.
+Sun, 11 Feb 2018 17:46:58 - Attempting connection to mongo db..
+Sun, 11 Feb 2018 17:46:58 - Attempting to connect to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Successfully connected to redis db.. (cache)
+Sun, 11 Feb 2018 17:46:58 - Failed to disconnect from mongo db - (might not be connected?).
+Sun, 11 Feb 2018 17:46:58 - Disconnected from redis db.

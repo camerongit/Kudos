@@ -34,7 +34,7 @@ abstract class Page
       return $this->coreConfig;
     }
 
-    protected function setStore(DBEntity $entity)
+    protected function setStore(DBEntity $entity): void
     {
       $this->store = $entity;
     }
@@ -52,17 +52,7 @@ abstract class Page
         return \get_include_path() . "/" . \explode("_", $key)[0] . "/";
     }
 
-    protected static function getDefaultViewsDir()
-    {
-        return self::$VIEWS_DIR;
-    }
-
-    protected static function getDefaultLayoutDir()
-    {
-        return self::$LAYOUT_DIR;
-    }
-
-    protected function display()
+    protected function display(): void
     {
         \ob_start();
         include static::$VIEWS_DIR . \strtolower($this->title) . '.php';
@@ -72,5 +62,5 @@ abstract class Page
         include static::$LAYOUT_DIR . \strtolower($this->layout) . '.php';
     }
 
-    abstract function view();
+    abstract function view(): void;
 }

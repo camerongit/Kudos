@@ -19,9 +19,9 @@ class Core
         $this->router = new Router($this);
     }
 
-    static function withConfig(?array $options)
+    static function withConfig(?array $options): Core
     {
-        $instance = new self();
+        $instance = new static();
         $instance->setConfig($options);
         return $instance;
     }
@@ -32,7 +32,7 @@ class Core
       $this->destroy($this->cache, "redis");
     }
 
-    private function destroy(Database $handle, string $dbPrefix)
+    private function destroy(Database $handle, string $dbPrefix): void
     {
       if($handle !== null) {
         $handle->disconnect()->done(function() use ($dbPrefix) {
@@ -43,7 +43,7 @@ class Core
       }
     }
 
-    function setConfig(?array $conf)
+    function setConfig(?array $conf): void
     {
       $defaultConfig = [];
 
@@ -59,7 +59,7 @@ class Core
       return $this->config;
     }
 
-    protected function setDB(Store $mongo)
+    protected function setDB(Store $mongo): void
     {
       $this->mongo = $mongo;
     }
@@ -84,7 +84,7 @@ class Core
       return $this->cache;
     }
 
-    protected function setRouter(Router $router)
+    protected function setRouter(Router $router): void
     {
       $this->router = $router;
     }

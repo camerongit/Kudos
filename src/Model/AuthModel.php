@@ -38,7 +38,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
     }))->done($successCallback, $failCallback);
   }
 
-  function save()
+  function save(): void
   {
     $data = [
       $this->idName => $this->getId(),
@@ -64,7 +64,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
     });
   }
 
-  function load()
+  function load(): void
   {
     $found = null;
 
@@ -77,7 +77,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
     $this->data = $found;
   }
 
-  function setId($id)
+  function setId($id): void
   {
     $this->idMap[$this->idName] = $id;
   }

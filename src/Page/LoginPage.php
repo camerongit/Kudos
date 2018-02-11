@@ -37,7 +37,8 @@ class LoginPage extends Page implements RateLimited
     return false;
   }
 
-  function view() {
+  function view(): void
+  {
     $this->display();
   }
 }

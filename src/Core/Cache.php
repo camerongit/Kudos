@@ -13,7 +13,7 @@ class Cache extends Database
     parent::__construct($core, Cache::DB_PREFIX);
   }
 
-  function setAndExpire(string $key, $value, int $timeMs)
+  function setAndExpire(string $key, $value, int $timeMs): void
   {
     if($this->isAlive()) {
       $this->db->set($key, $value);
