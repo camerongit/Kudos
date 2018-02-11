@@ -1,7 +1,7 @@
 <?php
 namespace CamHobbs\Kudos\Page;
 
-use \CamHobbs\Kudos\Core\Cache;
+use CamHobbs\Kudos\Core\Cache;
 
 class RateLimiter
 {

@@ -1,8 +1,10 @@
 <?php
 namespace CamHobbs\Kudos\Model;
 
-use CamHobbs\Kudos\Core\Logger;
-use CamHobbs\Kudos\Core\Store;
+use CamHobbs\Kudos\Core\{
+  Logger,
+  Store,
+};
 use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
 
 class AuthModel extends Model implements DBEntityIdentifiable
