@@ -11,9 +11,9 @@ class Router
     $this->core = $core;
   }
 
-  function registerCustomPage($page)
+  function registerCustomPage(string $pageClassLoc)
   {
-    \array_push($this->customRoutes, $page);
+    \array_push($this->customRoutes, $pageClassLoc);
   }
 
   function listen()

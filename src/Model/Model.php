@@ -9,7 +9,7 @@ abstract class Model implements DBEntity
   private $mongo;
   private $colName;
 
-  protected function __construct(Store $mongo, $colName)
+  protected function __construct(Store $mongo, string $colName)
   {
     $this->mongo = $mongo;
     $this->colName = $colName;

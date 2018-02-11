@@ -9,7 +9,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
 {
   use Logger;
 
-  private $idName = "email";
+  private const ID_NAME = "email";
   private $idMap = array();
 
   private $data = array();
@@ -41,7 +41,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
   function save()
   {
     $data = [
-      $this->idName => $this->getId(),
+      AuthModel::ID_NAME => $this->getId(),
       "password" => $this->password
     ];
 
@@ -69,8 +69,8 @@ class AuthModel extends Model implements DBEntityIdentifiable
     $found = null;
 
     $this->getCollection()->done(function($db) {
-      $found = $db->findOne(array($this->idName => $this->getId()));
-      $this->log("Loaded data for " + $found[$this->idName]);
+      $found = $db->findOne(array(AuthModel::ID_NAME => $this->getId()));
+      $this->log("Loaded data for " + $found[AuthModel::ID_NAME]);
     }, function($errorMsg) {
       $this->log($errorMsg);
     });
@@ -79,11 +79,11 @@ class AuthModel extends Model implements DBEntityIdentifiable
 
   function setId($id)
   {
-    $this->idMap[$this->idName] = $id;
+    $this->idMap[AuthModel::ID_NAME] = $id;
   }
 
   function getId()
   {
-    return $this->idMap[$this->idName];
+    return $this->idMap[AuthModel::ID_NAME];
   }
 }

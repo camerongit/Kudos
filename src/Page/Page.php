@@ -8,12 +8,14 @@ abstract class Page
 {
     private $title;
     private $layout;
+    private $coreConfig;
+
     private $store;
 
     protected static $VIEWS_DIR;
     protected static $LAYOUT_DIR;
 
-    protected function __construct(array $coreConfig, $title = null, $layout = null)
+    protected function __construct(array $coreConfig, string $title, ?string $layout)
     {
       $this->coreConfig = $coreConfig;
 
@@ -27,7 +29,7 @@ abstract class Page
       self::$LAYOUT_DIR = $this->getPageDir("layout_dir");
     }
 
-    function getCoreConfig()
+    function getCoreConfig(): array
     {
       return $this->coreConfig;
     }
@@ -37,7 +39,7 @@ abstract class Page
       $this->store = $entity;
     }
 
-    protected function getStore()
+    protected function getStore(): DBEntity
     {
       return $this->store;
     }

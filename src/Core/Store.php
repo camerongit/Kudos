@@ -7,13 +7,13 @@ class Store extends Database
 {
     use Logger;
 
-    protected $prefix = "mongo";
+    private const DB_PREFIX = "mongo";
     private $databaseName;
 
     function __construct(Core $core)
     {
-      parent::__construct($core, $this->prefix);
-      $this->databaseName = (isset($core->getConfig()[$this->getConfigKey()]["name"])) ? $this->config[$this->getConfigKey()]["name"] : "kudos";
+      parent::__construct($core, Store::DB_PREFIX);
+      $this->databaseName = (isset($core->getConfig()[$this->getConfigKey()]["name"])) ? $core->getConfig()[$this->getConfigKey()]["name"] : "kudos";
     }
 
     function __get($name)

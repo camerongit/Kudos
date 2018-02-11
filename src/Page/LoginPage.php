@@ -8,16 +8,17 @@ use CamHobbs\Kudos\Model\AuthModel;
 class LoginPage extends Page implements RateLimited
 {
   private $rateLimiter;
+  private const PAGE_REDIRECT_VALUE = "Login";
 
   function __construct(Core $core)
   {
-      parent::__construct($core->getConfig(), "Login");
+      parent::__construct($core->getConfig(), LoginPage::PAGE_REDIRECT_VALUE, null);
 
       $this->setStore(new AuthModel($core->getDB()));
-      $this->rateLimiter = new RateLimiter();
+      $this->rateLimiter = new RateLimiter($core->getCache(), "login-" . $_SERVER["REMOTE_ADDR"] . "", 500);
   }
 
-  function getRateLimiter()
+  function getRateLimiter() : RateLimiter
   {
     return $this->rateLimiter;
   }

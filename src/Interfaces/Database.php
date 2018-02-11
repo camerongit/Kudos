@@ -10,7 +10,7 @@ class Database
   private $configKey;
   protected $db;
 
-  protected function __construct(Core $core, $prefix)
+  protected function __construct(Core $core, string $prefix)
   {
     $this->configKey = $prefix . "_db";
 
@@ -48,12 +48,12 @@ class Database
     return $this->configKey;
   }
 
-  protected function getHost()
+  protected function getHost(): ?string
   {
     return $this->host;
   }
 
-  protected function getPort()
+  protected function getPort(): ?string
   {
     return $this->port;
   }

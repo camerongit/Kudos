@@ -3,7 +3,7 @@ namespace CamHobbs\Kudos\Core;
 
 trait Logger
 {
-  function log($text)
+  function log(string $text)
   {
     $file = \fopen("dev.log", "a");
     $date = DATE_RFC2822;

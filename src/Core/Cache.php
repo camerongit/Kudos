@@ -6,14 +6,27 @@ use CamHobbs\Kudos\Interfaces\Database;
 class Cache extends Database
 {
   use Logger;
+  private const DB_PREFIX = "redis";
 
-  function __construct($core)
+  function __construct(Core $core)
   {
-    parent::__construct($core, "redis");
+    parent::__construct($core, Cache::DB_PREFIX);
   }
 
-  function cache($key, $value, $time)
+  function setAndExpire(string $key, $value, int $timeMs)
   {
+    if($this->isAlive()) {
+      $this->db->set($key, $value);
+      $this->db->expire($key, $timeMs);
+    }
+  }
+
+  function getValue($key) : ?object
+  {
+    if($this->isAlive()) {
+      return $this->db->get($key);
+    }
+    return null;
   }
 
   function connect()
