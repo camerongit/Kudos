@@ -2,10 +2,9 @@
 namespace CamHobbs\Kudos\Page;
 
 use CamHobbs\Kudos\Core\Core;
-use CamHobbs\Kudos\Interfaces\RateLimited;
 use CamHobbs\Kudos\Model\AuthModel;
 
-class LoginPage extends Page implements RateLimited
+class LoginPage extends Page
 {
   private $rateLimiter;
   private const PAGE_REDIRECT_VALUE = "Login";
@@ -16,11 +15,6 @@ class LoginPage extends Page implements RateLimited
 
       $this->setStore(new AuthModel($core->getDB()));
       $this->rateLimiter = new RateLimiter($core->getCache(), "login-" . $_SERVER["REMOTE_ADDR"] . "", 500);
-  }
-
-  function getRateLimiter() : RateLimiter
-  {
-    return $this->rateLimiter;
   }
 
   function actionLogin()
