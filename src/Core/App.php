@@ -13,16 +13,27 @@ class App
     private $cache;
     private $router;
 
-    protected function __construct()
+    protected function __construct(?\React\EventLoop\StreamSelectLoop $loop)
     {
         $this->mongo = new Store($this);
         $this->cache = new Cache($this);
+
+        $databases = array($this->mongo, $this->cache);
+
+        foreach($databases as $db) {
+          $db->connect();
+        }
+
         $this->router = new Router($this);
+
+        if($loop !== null) {
+          // Start timers
+        }
     }
 
-    static function withConfig(?array $options): App
+    static function withConfig(?\React\EventLoop\StreamSelectLoop $loop, ?array $options): App
     {
-        $instance = new static();
+        $instance = new static($loop);
         $instance->setConfig($options);
         return $instance;
     }
@@ -67,21 +78,11 @@ class App
 
     function getDB(): Store
     {
-      if($this->mongo !== null) {
-        if(!$this->mongo->isAlive()) {
-          $this->mongo->connect();
-        }
-      }
       return $this->mongo;
     }
 
     function getCache(): Cache
     {
-      if($this->cache !== null) {
-        if(!$this->cache->isAlive()) {
-          $this->cache->connect();
-        }
-      }
       return $this->cache;
     }
 

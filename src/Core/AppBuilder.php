@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace CamHobbs\Kudos\Core;
 
-class AppBuilder
+final class AppBuilder
 {
   private function __construct()
   {
@@ -11,9 +11,9 @@ class AppBuilder
   private function __clone()
   {
   }
-  
-  static function make(?array $config) : App
+
+  static function make(?\React\EventLoop\StreamSelectLoop $loop, ?array $config) : App
   {
-    return App::withConfig($config);
+    return App::withConfig($loop, $config);
   }
 }
