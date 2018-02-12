@@ -4,7 +4,7 @@ namespace CamHobbs\Kudos\Core;
 
 use CamHobbs\Kudos\Interfaces\Database;
 
-class Core
+class App
 {
     use Logger;
 
@@ -20,7 +20,7 @@ class Core
         $this->router = new Router($this);
     }
 
-    static function withConfig(?array $options): Core
+    static function withConfig(?array $options): App
     {
         $instance = new static();
         $instance->setConfig($options);

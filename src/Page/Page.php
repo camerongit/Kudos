@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace CamHobbs\Kudos\Page;
 
-use CamHobbs\Kudos\Core\Core;
+use CamHobbs\Kudos\Core\App;
 use CamHobbs\Kudos\Interfaces\DBEntity;
 
 abstract class Page
@@ -16,9 +16,9 @@ abstract class Page
     protected static $VIEWS_DIR;
     protected static $LAYOUT_DIR;
 
-    protected function __construct(array $coreConfig, string $title, ?string $layout)
+    protected function __construct(App $app, string $title, ?string $layout)
     {
-      $this->coreConfig = $coreConfig;
+      $this->coreConfig = $app->getConfig();
 
       if($title === null) {
         $title = \substr(\get_class($this), -4);

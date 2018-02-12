@@ -9,9 +9,9 @@ class Cache extends Database
   use Logger;
   private const DB_PREFIX = "redis";
 
-  function __construct(Core $core)
+  function __construct(App $app)
   {
-    parent::__construct($core, Cache::DB_PREFIX);
+    parent::__construct($app, Cache::DB_PREFIX);
   }
 
   function setAndExpire(string $key, $value, int $timeMs): void

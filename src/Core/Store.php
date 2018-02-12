@@ -11,10 +11,10 @@ class Store extends Database
     private const DB_PREFIX = "mongo";
     private $databaseName;
 
-    function __construct(Core $core)
+    function __construct(App $app)
     {
-      parent::__construct($core, Store::DB_PREFIX);
-      $this->databaseName = (isset($core->getConfig()[$this->getConfigKey()]["name"])) ? $core->getConfig()[$this->getConfigKey()]["name"] : "kudos";
+      parent::__construct($app, Store::DB_PREFIX);
+      $this->databaseName = (isset($app->getConfig()[$this->getConfigKey()]["name"])) ? $app->getConfig()[$this->getConfigKey()]["name"] : "kudos";
     }
 
     function __get($name)

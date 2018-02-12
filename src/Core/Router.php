@@ -5,11 +5,11 @@ namespace CamHobbs\Kudos\Core;
 class Router
 {
   private $customRoutes = array();
-  private $core;
+  private $app;
 
-  function __construct(Core $core)
+  function __construct(App $app)
   {
-    $this->core = $core;
+    $this->app = $app;
   }
 
   function registerCustomPage(string $pageClassLoc): void
@@ -26,8 +26,8 @@ class Router
       $properRedirect = \ucfirst(\strtolower($redirect)) . "Page";
 
       if(\array_key_exists($redirect, $this->customRoutes)) {
-        if(\array_key_exists("custom_page_directory", $this->core->getConfig())) {
-          $customPageDir = \str_replace("/", "", $this->core->getConfig()["custom_page_directory"]);
+        if(\array_key_exists("custom_page_directory", $this->app->getConfig())) {
+          $customPageDir = \str_replace("/", "", $this->app->getConfig()["custom_page_directory"]);
 
           if($customPageDir !== null) {
             if(!empty(\strchr($customPageDir, \get_include_path()))) {
@@ -49,7 +49,7 @@ class Router
   private function loadPage($page): void
   {
     if(\class_exists($page)) {
-      $loadedPage = new $page($this->core);
+      $loadedPage = new $page($this->app);
       $loadedPage->view();
     }
   }

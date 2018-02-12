@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace CamHobbs\Kudos\Interfaces;
 
-use CamHobbs\Kudos\Core\Core;
+use CamHobbs\Kudos\Core\App;
 
 class Database
 {
@@ -11,13 +11,13 @@ class Database
   private $configKey;
   protected $db;
 
-  protected function __construct(Core $core, string $prefix)
+  protected function __construct(App $app, string $prefix)
   {
     $this->configKey = $prefix . "_db";
 
-    if(\array_key_exists($this->configKey, (array) $core->getConfig()) && \is_array($core->getConfig()[$this->configKey])) {
-      $this->host = $core->getConfig()[$this->configKey]["host"];
-      $this->port = $core->getConfig()[$this->configKey]["port"];
+    if(\array_key_exists($this->configKey, (array) $app->getConfig()) && \is_array($app->getConfig()[$this->configKey])) {
+      $this->host = $app->getConfig()[$this->configKey]["host"];
+      $this->port = $app->getConfig()[$this->configKey]["port"];
     }
   }
 
