@@ -18,5 +18,8 @@
       "psr-4": {
         "CamHobbs\\Kudos\\": "src"
       }
+    },
+    "suggest": {
+      "charlottedunois/validator": "For creating custom validations for Page actions"
     }
 }
