@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace CamHobbs\Kudos\Interfaces;
 
 use CamHobbs\Kudos\Core\Core;

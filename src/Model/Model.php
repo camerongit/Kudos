@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace CamHobbs\Kudos\Model;
 
 use CamHobbs\Kudos\Core\Store;
