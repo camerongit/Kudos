@@ -21,7 +21,7 @@ class Database
     }
   }
 
-  function isAlive()
+  function isAlive(): boolean
   {
     return $this->db !== null;
   }
@@ -44,7 +44,7 @@ class Database
     }));
   }
 
-  protected function getConfigKey()
+  protected function getConfigKey(): string
   {
     return $this->configKey;
   }

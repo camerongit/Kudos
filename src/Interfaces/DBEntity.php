@@ -4,11 +4,11 @@ namespace CamHobbs\Kudos\Interfaces;
 
 interface DBEntity
 {
-  function save();
+  function save(): void;
 
   function saveAsync(callable $successCallback, callable $failCallback);
 
-  function load();
+  function load(): ?array;
 
   function loadAsync();
 }

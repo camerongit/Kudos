@@ -4,7 +4,7 @@ namespace CamHobbs\Kudos\Interfaces;
 
 interface DBEntityIdentifiable
 {
-  function setId($id);
+  function setId($id): void;
 
   function getId();
 }
