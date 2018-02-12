@@ -4,7 +4,7 @@ namespace CamHobbs\Kudos\Model;
 
 use CamHobbs\Kudos\Core\{
   Logger,
-  Store,
+  Store
 };
 use CamHobbs\Kudos\Interfaces\DBEntityIdentifiable;
 
