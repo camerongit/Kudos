@@ -14,6 +14,11 @@ class Cache extends Database
     parent::__construct($app, Cache::DB_PREFIX);
   }
 
+  function isAlive(): boolean
+  {
+    return parent::isAlive() && $this->db->isConnected();
+  }
+
   function setAndExpire(string $key, $value, int $timeMs): void
   {
     if($this->isAlive()) {
