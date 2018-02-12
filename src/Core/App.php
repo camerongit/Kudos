@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace CamHobbs\Kudos\Core;
 
 use CamHobbs\Kudos\Interfaces\Database;
+use CamHobbs\Kudos\Utils\DatabaseConnection;
 
 class App
 {
@@ -27,7 +28,11 @@ class App
         $this->router = new Router($this);
 
         if($loop !== null) {
-          // Start timers
+          $connection = new DatabaseConnection($loop);
+
+          foreach($databases as $db) {
+            $connection->keepAlive($db);
+          }
         }
     }
 
