@@ -11,7 +11,8 @@
         "react/promise": "^2.5",
         "mongodb/mongodb": "^1.2",
         "predis/predis": "^1.1",
-        "php": ">= 7.1"
+        "php": ">= 7.1",
+        "react/event-loop": "^0.4.3"
     },
     "autoload": {
       "psr-4": {

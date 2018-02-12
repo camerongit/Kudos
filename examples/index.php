@@ -6,6 +6,6 @@
 
 require_once '../src/autoload.php';
 
-$app = new \CamHobbs\Kudos\Core\App;
+$app = \CamHobbs\Kudos\Core\AppBuilder::make(null);
 
 $app->getRouter()->listen();

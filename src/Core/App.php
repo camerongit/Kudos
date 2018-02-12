@@ -13,7 +13,7 @@ class App
     private $cache;
     private $router;
 
-    function __construct()
+    protected function __construct()
     {
         $this->mongo = new Store($this);
         $this->cache = new Cache($this);
