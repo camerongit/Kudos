@@ -18,7 +18,7 @@ class LoginPage extends Page
       $this->rateLimiter = new RateLimiter($app->getCache(), "login-" . $_SERVER["REMOTE_ADDR"] . "", 500);
   }
 
-  function actionLogin()
+  function actionLogin(): boolean
   {
     if(isset($_POST["email"]) && isset($_POST["password"])) {
       $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
