@@ -23,11 +23,18 @@ class LoginPage extends Page
     if(isset($_POST["email"]) && isset($_POST["password"])) {
       $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 
-      $this->getStore()->setId($email);
-      $this->getStore()->load();
+      if($email) {
+        $this->getStore()->setId($_POST["email"]);
+        $data = $this->getStore()->load();
 
-      // Compare post password encrypted and targetaccount encrypted pass and if correct..:
-      return true;
+        if($data !== null && \array_key_exists("password", $data) && \array_key_exists("encryptedPass", $data)) {
+          $encrypted = $data["encryptedPass"];
+
+          if(\password_verify($_POST["password"], $encrypted)) {
+            return true;
+          }
+        }
+      }
     }
     return false;
   }
