@@ -4,6 +4,14 @@ namespace CamHobbs\Kudos\Utils;
 
 final class SessionHandler
 {
+  private function __construct()
+  {
+  }
+
+  private function __clone()
+  {
+  }
+  
   static function setupForUser(string $userId)
   {
     \session_start();
