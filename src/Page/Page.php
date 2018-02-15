@@ -58,8 +58,8 @@ abstract class Page
         \ob_start();
         include static::$VIEWS_DIR . \strtolower($this->title) . '.php';
 
-        $contents = \ob_get_clean();
-
+        $contents = \htmlentities(\ob_get_clean());
+        
         include static::$LAYOUT_DIR . \strtolower($this->layout) . '.php';
     }
 
