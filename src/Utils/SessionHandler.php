@@ -22,7 +22,7 @@ final class SessionHandler
     ));
   }
 
-  static function setSessionVars($sessionVars, $secure) {
+  static function setSessionVars($sessionVars, $secure = true) {
     foreach($sessionVars as $key => $value) {
       $_SESSION[$key] = $value;
     }
