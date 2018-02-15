@@ -19,7 +19,7 @@ class LoginPage extends Page
       $this->rateLimiter = new RateLimiter($app->getCache(), "login-" . $_SERVER["REMOTE_ADDR"] . "", 500);
   }
 
-  function actionLogin(): boolean
+  function actionLogin(): bool
   {
     if(isset($_POST["email"]) && isset($_POST["password"])) {
       $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
@@ -28,11 +28,15 @@ class LoginPage extends Page
         $this->getStore()->setId($_POST["email"]);
         $data = $this->getStore()->load();
 
-        if($data !== null && \array_key_exists("password", $data) && \array_key_exists("encryptedPass", $data)) {
+        if($data !== null && \array_key_exists("encryptedPass", $data)) {
           $encrypted = $data["encryptedPass"];
 
           if(\password_verify($_POST["password"], $encrypted)) {
-            SessionHandler::setupForUser($data["userId"]);
+            SessionHandler::start();
+            SessionHandler::setVars(array(
+              "csrfToken" => \bin2hex(\random_bytes(32)),
+              "userId" => $_POST["email"]
+            ), false);
             return true;
           }
         }

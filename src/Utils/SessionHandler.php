@@ -12,17 +12,12 @@ final class SessionHandler
   {
   }
 
-  static function setupForUser(string $userId)
+  static function start()
   {
     \session_start();
-
-    self::setSessionVars(array(
-      "userId" => $userId,
-      "csrfToken" => \bin2hex(\random_bytes(32))
-    ));
   }
 
-  static function setSessionVars($sessionVars, $secure = true) {
+  static function setVars($sessionVars, $regenerate = true) {
     foreach($sessionVars as $key => $value) {
       $_SESSION[$key] = $value;
     }
