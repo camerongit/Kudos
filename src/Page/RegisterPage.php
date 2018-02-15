@@ -28,6 +28,7 @@ class RegisterPage extends Page
         $this->getStore()->setId($_POST["email"]);
 
         if($this->getStore()->load() === null) {
+          // Send email and cache token in redis for verify page
           $this->getStore()->password = $encryptedPass;
           $this->getStore()->save();
           return true;
