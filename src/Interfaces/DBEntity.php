@@ -8,7 +8,7 @@ interface DBEntity
 
   function saveAsync(callable $successCallback, callable $failCallback);
 
-  function load(): ?array;
+  function load(): void;
 
   function loadAsync();
 }
