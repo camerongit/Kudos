@@ -44,8 +44,8 @@ class AuthModel extends Model implements DBEntityIdentifiable
   function save(): void
   {
     $data = [
-      $this->idName => $this->getId(),
-      "password" => $this->password
+      $this->idName => (string) $this->getId(),
+      "password" => (string) $this->password
     ];
 
     $this->getCollection()->then(function($db) {

@@ -6,9 +6,5 @@
 
 require_once '../src/autoload.php';
 
-$loop = \React\EventLoop\Factory::create();
-
-$app = \CamHobbs\Kudos\Core\AppBuilder::make($loop, null);
-
+$app = \CamHobbs\Kudos\Core\AppBuilder::make(null);
 $app->getRouter()->listen();
-$loop->run();
