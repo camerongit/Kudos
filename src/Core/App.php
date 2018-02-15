@@ -9,7 +9,7 @@ class App
 {
     use Logger;
 
-    protected $config = array();
+    private $config = array();
     private $mongo;
     private $cache;
     private $router;
@@ -56,7 +56,7 @@ class App
 
     function setConfig(?array $conf): void
     {
-      $defaultConfig = [];
+      $defaultConfig = array();
 
       if ($conf !== null && \is_array($conf)) {
           $this->config = \array_merge($defaultConfig, $conf);
