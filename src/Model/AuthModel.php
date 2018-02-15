@@ -18,15 +18,22 @@ class AuthModel extends Model implements DBEntityIdentifiable
   private $data = array();
   private $email;
 
-  function __construct(Store $db) {
+  function __construct(Store $db)
+  {
     parent::__construct($db, "Users");
   }
 
-  function __get($name) {
+  function __get($name)
+  {
     if(isset($this->data[$name])) {
       return $this->data[$name];
     }
     return null;
+  }
+
+  function __set($name, $value)
+  {
+    $this->data[$name] = $value;
   }
 
   function saveAsync(callable $successCallback, callable $failCallback)
@@ -45,7 +52,7 @@ class AuthModel extends Model implements DBEntityIdentifiable
   {
     $data = [
       $this->idName => (string) $this->getId(),
-      "password" => (string) $this->password
+      "encryptedPass" => (string) $this->password
     ];
 
     $this->getCollection()->then(function($db) {
