@@ -4,7 +4,7 @@
 \set_include_path(__DIR__);
 \date_default_timezone_set("GMT");
 
-require_once '../src/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = \CamHobbs\Kudos\Core\AppBuilder::make(null);
 $app->getRouter()->listen();
