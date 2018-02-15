@@ -2,12 +2,8 @@
 declare(strict_types=1);
 namespace CamHobbs\Kudos\Utils;
 
-use CamHobbs\Kudos\Core\Logger;
-
 final class SessionHandler
 {
-  use Logger;
-
   static function setupForUser(string $userId)
   {
     \session_start();
