@@ -12,8 +12,8 @@ final class AppBuilder
   {
   }
 
-  static function make(?\React\EventLoop\StreamSelectLoop $loop, ?array $config) : App
+  static function make(?array $config) : App
   {
-    return App::withConfig($loop, $config);
+    return App::withConfig($config);
   }
 }

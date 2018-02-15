@@ -21,7 +21,7 @@ class Database
     }
   }
 
-  function isAlive(): boolean
+  function isAlive(): bool
   {
     return $this->db !== null;
   }

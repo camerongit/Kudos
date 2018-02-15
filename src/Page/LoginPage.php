@@ -4,6 +4,7 @@ namespace CamHobbs\Kudos\Page;
 
 use CamHobbs\Kudos\Core\App;
 use CamHobbs\Kudos\Model\AuthModel;
+use CamHobbs\Kudos\Utils\SessionHandler;
 
 class LoginPage extends Page
 {
@@ -31,6 +32,7 @@ class LoginPage extends Page
           $encrypted = $data["encryptedPass"];
 
           if(\password_verify($_POST["password"], $encrypted)) {
+            SessionHandler::setupForUser($data["userId"]);
             return true;
           }
         }

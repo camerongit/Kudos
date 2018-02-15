@@ -14,7 +14,7 @@ class Cache extends Database
     parent::__construct($app, Cache::DB_PREFIX);
   }
 
-  function isAlive(): boolean
+  function isAlive(): bool
   {
     return parent::isAlive() && $this->db->isConnected();
   }

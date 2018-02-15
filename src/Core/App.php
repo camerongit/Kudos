@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace CamHobbs\Kudos\Core;
 
 use CamHobbs\Kudos\Interfaces\Database;
-use CamHobbs\Kudos\Utils\DatabaseConnection;
+use CamHobbs\Kudos\Utils\SessionHandler;
 
 class App
 {
@@ -14,7 +14,7 @@ class App
     private $cache;
     private $router;
 
-    protected function __construct(?\React\EventLoop\StreamSelectLoop $loop)
+    protected function __construct()
     {
         $this->mongo = new Store($this);
         $this->cache = new Cache($this);
@@ -26,19 +26,11 @@ class App
         }
 
         $this->router = new Router($this);
-
-        if($loop !== null) {
-          $connection = new DatabaseConnection($loop);
-
-          foreach($databases as $db) {
-            $connection->keepAlive($db);
-          }
-        }
     }
 
-    static function withConfig(?\React\EventLoop\StreamSelectLoop $loop, ?array $options): App
+    static function withConfig(?array $options): App
     {
-        $instance = new static($loop);
+        $instance = new static();
         $instance->setConfig($options);
         return $instance;
     }
@@ -47,6 +39,8 @@ class App
     {
       $this->destroy($this->mongo, "mongo");
       $this->destroy($this->cache, "redis");
+
+      SessionHandler::destroy();
     }
 
     private function destroy(Database $handle, string $dbPrefix): void

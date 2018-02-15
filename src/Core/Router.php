@@ -25,25 +25,27 @@ class Router
       $redirect = \str_replace(\strchr($redirect, "Page"), "", $redirect);
       $properRedirect = \ucfirst(\strtolower($redirect)) . "Page";
 
-      if(\array_key_exists($redirect, $this->customRoutes)) {
-        if(\array_key_exists("custom_page_directory", $this->app->getConfig())) {
-          $customPageDir = \str_replace("/", "", $this->app->getConfig()["custom_page_directory"]);
+      if(\array_key_exists($redirect, $this->customRoutes) && array_key_exists("custom_page_directory", $this->app->getConfig())) {
+        $customPageDir = \str_replace("/", "", $this->app->getConfig()["custom_page_directory"]);
 
-          if($customPageDir !== null) {
-            if(!empty(\strchr($customPageDir, \get_include_path()))) {
-              $customPageDir = \strchr($customPageDir, \get_include_path());
-            }
-
-            $page = \get_include_path() . "/" . $customPageDir . "/" . $properRedirect;
-
-            $this->loadPage($page);
+        if($customPageDir !== null) {
+          if(!empty(\strchr($customPageDir, \get_include_path()))) {
+            $customPageDir = \strchr($customPageDir, \get_include_path());
           }
+
+          $page = \get_include_path() . "/" . $customPageDir . "/" . $properRedirect;
+
+          $this->loadPage($page);
+          return;
         }
       } else {
         $page = "\CamHobbs\Kudos\Page\\" . $properRedirect;
         $this->loadPage($page);
+        return;
       }
     }
+    $page = "\CamHobbs\Kudos\Page\\IndexPage";
+    $this->loadPage($page);
   }
 
   private function loadPage($page): void
