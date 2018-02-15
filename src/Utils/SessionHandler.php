@@ -11,14 +11,14 @@ final class SessionHandler
   private function __clone()
   {
   }
-  
+
   static function setupForUser(string $userId)
   {
     \session_start();
 
     self::setSessionVars(array(
       "userId" => $userId,
-      "csrfToken" => bin2hex(random_bytes(32))
+      "csrfToken" => \bin2hex(\random_bytes(32))
     ));
   }
 
