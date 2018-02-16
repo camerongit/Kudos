@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace CamHobbs\Kudos\Page;
 
 use CamHobbs\Kudos\Core\App;
+use CamHobbs\Kudos\Core\RateLimiter;
 use CamHobbs\Kudos\Model\AuthModel;
 use CamHobbs\Kudos\Utils\SessionHandler;
 
